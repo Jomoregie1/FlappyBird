@@ -15,9 +15,18 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     Image bottomPipeImg;
     Bird bird;
 
+//    Pipes measurement
+    int pipeX = Screen.getBOARD_WIDTH();
+    int pipeY = 0;
+
+//    Scaled actual width and height of images by 1/6 to fit with in the screen.
+    int pipeWidth = 64;
+    int pipeHeight = 512;
+
+
 //    Game Logic
     Timer gameLoop;
-    int velocityY = -9;
+    int velocityY = 0;
     int gravity = 1;
 
 
@@ -25,6 +34,12 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     FlappyBird() {
 //        sets the preferredSizes dimensions.
         setPreferredSize(new Dimension(Screen.getBOARD_WIDTH(),Screen.getBOARD_HEIGHT()));
+
+//        Ensures, this flappy bird class takes in the key events.
+        setFocusable(true);
+
+//      recieves key events from the given component which is the current FlappyBird class that inherits from Jpanel.
+        addKeyListener(this);
 
 //        This initialises the fields, retrieving the images stored in the src file.
         backgroundImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/flappybirdbg.png"))).getImage();
@@ -69,13 +84,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         repaint();
     }
 
-    /**
-     * @param e the event to be processed
-     */
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
 
     /**
      * @param e the event to be processed
@@ -83,10 +91,26 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        /**
+         *  we check the key pressed, if the key pressed is equal to the space bar then we set Velocity y to -9.
+         */
+
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            this.velocityY = -9;
+        }
+
     }
 
     /**
-     * @param e the event to be processed
+     * @param e the event to be processed - not used in our code.
+     */
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    /**
+     * @param e the event to be processed - not used in code.
      */
     @Override
     public void keyReleased(KeyEvent e) {

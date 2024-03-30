@@ -21,6 +21,8 @@ public class Screen {
         this.frame.add(this.flappyBird);
 //       sizes frame so all components are at or above their preferred sizes. so to size the frame not including the title bar.
         this.frame.pack();
+
+        this.flappyBird.requestFocusInWindow();
         // Makes the game window visible.
         this.frame.setVisible(true);
     }
