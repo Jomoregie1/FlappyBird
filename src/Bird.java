@@ -32,6 +32,22 @@ public class Bird {
         return BIRD_HEIGHT;
     }
 
+    public void setBirdX(int birdX) {
+        this.birdX = birdX;
+    }
+
+    public void setBirdY(int birdY) {
+        this.birdY = birdY;
+    }
+
+    public void increaseBirdX(int velocity) {
+        this.birdX += velocity;
+    }
+
+    public void increaseBirdY(int birdY) {
+        this.birdY += birdY;
+    }
+
     public Image getImg() {
         return img;
     }
