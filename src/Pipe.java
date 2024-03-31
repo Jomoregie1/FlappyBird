@@ -7,8 +7,8 @@ public class Pipe {
 
     private int pipeX;
     private int pipeY;
-    private final int PIPE_WIDTH = 64;
-    private final int PIPE_HEIGHT = 512;
+    private static final int PIPE_WIDTH = 64;
+    private static final int PIPE_HEIGHT = 512;
     private Image img;
     private boolean passed = false;
 
@@ -19,6 +19,14 @@ public class Pipe {
         this.img = img;
     }
 
+    public void setPipeX(int pipeX) {
+        this.pipeX = pipeX;
+    }
+
+    public void setPipeY(int pipeY) {
+        this.pipeY = pipeY;
+    }
+
     public int getPipeX() {
         return pipeX;
     }
@@ -27,11 +35,11 @@ public class Pipe {
         return pipeY;
     }
 
-    public int getPIPE_WIDTH() {
+    public static int getPIPE_WIDTH() {
         return PIPE_WIDTH;
     }
 
-    public int getPIPE_HEIGHT() {
+    public static int getPIPE_HEIGHT() {
         return PIPE_HEIGHT;
     }
 
