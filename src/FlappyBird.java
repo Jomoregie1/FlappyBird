@@ -19,7 +19,8 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     Bird bird;
     Pipe pipe;
 
-//    Game Logic
+
+//  Game Logic
     Timer gameLoop;
     Timer placePipesTimer;
 
@@ -29,6 +30,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     int gravity = 1;
 
     ArrayList<Pipe> pipes;  // used to keep track of the pipes in our list as there are many pipes in the game.
+//    Random random = new Random();
+    boolean gameOver = false;
+    double score = 0;
+
 
 
     FlappyBird() {
@@ -78,6 +83,14 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
         for (Pipe pipe : pipes) {
             g.drawImage(pipe.getImg(), pipe.getPipeX(),pipe.getPipeY(),pipe.getPIPE_WIDTH(),pipe.getPIPE_HEIGHT(),null);
+        }
+
+        g.setColor(Color.white);
+        g.setFont(new Font("Arial", Font.PLAIN, 32));
+        if (gameOver) {
+            g.drawString("Game Over: " + String.valueOf((int) score), 10, 35);
+        } else {
+            g.drawString(String.valueOf((int) score), 10, 35);
         }
     }
 
