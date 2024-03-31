@@ -2,16 +2,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.awt.event.KeyListener;import java.util.*;
 import javax.swing.*;
-import java.util.List;
+import javax.swing.Timer;
 import java.util.ArrayList;
 
 public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
-//    This adds in our images stored in the source files .
+//  This adds in our images stored in the source files.
     Image backgroundImg;
     Image birdImg;
     Image topPipeImg;
@@ -104,7 +102,22 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         // move pipes
         for (Pipe pipe: pipes ) {
             pipe.increaseX(velocityX);
+
+
+            if (!pipe.isPassed() && bird.getBirdX() > pipe.getPipeX() + Pipe.getPIPE_WIDTH())  {
+                pipe.setPassed(true);
+                score += 0.5;  // player gets half a point for each individual pipe passed.
+            }
+
+            if (this.collision(this.bird, pipe)) {
+                this.gameOver = true;
+            }
         }
+
+        if (bird.getBirdY() > Screen.getBOARD_HEIGHT()) {
+            this.gameOver = true;
+        }
+
 
 
 
@@ -167,7 +180,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         /**
          *  we check the key pressed, if the key pressed is equal to the space bar then we set Velocity y to -9.
          */
-
         if(e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.velocityY = -9;
 
