@@ -111,8 +111,26 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     }
 
     public void placePipes() {
-        Pipe topPipe = new Pipe(topPipeImg);
+        Pipe topPipe = new Pipe(this.topPipeImg);
+        Pipe bottomPipe = new Pipe(this.bottomPipeImg);
+
+//      Generates a random pipe that has a length of between 1/4 - 3/4 of complete length of the top pip image.
+        int randomPipeY = (int) (topPipe.getPipeY() - Pipe.getPIPE_HEIGHT()/4 - Math.random()*(Pipe.getPIPE_HEIGHT()/2));
+        int openingSpace = Screen.getBOARD_HEIGHT()/4;
+
+        topPipe.setPipeY(randomPipeY);
         this.pipes.add(topPipe);
+
+        bottomPipe.setPipeY(topPipe.getPipeY() + Pipe.getPIPE_HEIGHT() + openingSpace);
+        this.pipes.add(bottomPipe);
+    }
+
+
+    public boolean collision(Bird a, Pipe b) {
+        return a.getBirdX() < b.getPipeX() + Pipe.getPIPE_WIDTH() &&
+               a.getBirdX() + Bird.getBIRD_WIDTH() > b.getPipeX() &&
+               a.getBirdY() < b.getPipeY() + Pipe.getPIPE_HEIGHT() &&
+               a.getBirdY() + Bird.getBIRD_HEIGHT() > b.getPipeY();
     }
 
     @Override
