@@ -138,6 +138,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 //        repaints the given component.
         move();
         repaint();
+        if (this.gameOver) {
+            this.placePipesTimer.stop();
+            this.gameLoop.stop();
+        }
     }
 
 
@@ -166,6 +170,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
         if(e.getKeyCode() == KeyEvent.VK_SPACE) {
             this.velocityY = -9;
+
+            if(gameOver) {
+                this.restartGame();
+            }
         }
 
     }
