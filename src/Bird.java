@@ -5,15 +5,20 @@ public class Bird {
 
     private int birdX;
     private int birdY;
+    private static final int BIRD_STARTING_X = Screen.getBOARD_WIDTH()/2;
     private static final int BIRD_WIDTH = 34;
     private static final int BIRD_HEIGHT = 24;
-    Image img;
+    private Image img;
 
     Bird(Image img) {
         this.birdX = Screen.getBOARD_WIDTH()/8;
         this.birdY = Screen.getBOARD_HEIGHT()/2;
         this.img = img;
 
+    }
+
+    public static int getBIRD_STARTING_X() {
+        return BIRD_STARTING_X;
     }
 
     public int getBirdX() {
